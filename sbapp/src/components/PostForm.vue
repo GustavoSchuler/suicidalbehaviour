@@ -145,5 +145,8 @@ export default {
 <style>
 .post-thumb {
   max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 };
 </style>
