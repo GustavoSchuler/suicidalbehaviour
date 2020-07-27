@@ -28,13 +28,13 @@
       </tr>
     </table>
     <div class="ui two column centered grid mt-15">
-      <pagination :total="posts.total" :page-size="posts.pageSize" :callback="pageChanged"></pagination>
+      <pagination :total="posts.total" :page-size="posts.pageSize" :callback="pageChanged" :options="paginationOptions"></pagination>
     </div>
   </div>
 </template>
 
 <script>
-import pagination from 'vuejs-pagination-semantic-ui'
+import pagination from '../../components/Pagination'
 import moment from 'moment'
 import { api } from '../../helpers/helpers';
 
@@ -49,7 +49,7 @@ export default {
       posts: {
         total: 0,
         pageSize: 0,
-      },   
+      },
     };
   },
 
@@ -95,5 +95,9 @@ export default {
 <style scoped>
   .mt-15 {
     margin-top: 15px;
+  }
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
   }
 </style>
