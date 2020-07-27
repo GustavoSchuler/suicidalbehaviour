@@ -12,7 +12,7 @@
           <th> <i class="trash icon"></i></th>
         </tr>
       </thead>
-      <tr v-for="(post, i) in posts.content" :key="i">
+      <tr v-for="(post, i) in postList" :key="i">
         <td class="single line">{{ getGroupName(post.groupId) }}</td>
         <td>{{ post.description }}</td>
         <td class="single line">{{ dateFormat(post.createdDate) }}</td>
@@ -28,7 +28,7 @@
       </tr>
     </table>
     <div class="ui two column centered grid mt-15">
-      <pagination :total="total" :page-size="pageSize" :callback="pageChanged"></pagination>
+      <pagination :total="posts.total" :page-size="posts.pageSize" :callback="pageChanged"></pagination>
     </div>
   </div>
 </template>
@@ -46,16 +46,18 @@ export default {
   data() {
     return {
       groups: [],
-      posts: [],      
+      posts: {
+        total: 0,
+        pageSize: 0,
+      },   
     };
   },
 
   computed: {
-    total() {
-      return this.posts.length > 0 ? this.posts.total : 0
-    },
-    pageSize() {
-      return this.posts.length > 0 ? this.posts.pageSize : 0
+    postList() {
+      if (this.posts.length === 0) return []
+
+      return this.posts.content
     },
   },
 
