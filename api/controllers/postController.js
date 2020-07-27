@@ -5,9 +5,22 @@ const DIR = './uploads/';
 
 
 exports.list_all_posts = (req, res) => {
-  post.find({}, (err, posts) => {
+  const { page } = req.query
+  const limit = 10
+
+  post.find({},{}, { skip: (page-1) * limit, limit: limit }, (err, posts) => {
     if (err) res.send(err);
-    res.json(posts);
+    post.countDocuments({}).exec((count_error, count) => {
+      if (err) {
+        return res.json(count_error);
+      }
+      return res.json({
+        total: count,
+        page: page,
+        pageSize: posts.length,
+        content: posts
+      });
+    });
   });
 };
 

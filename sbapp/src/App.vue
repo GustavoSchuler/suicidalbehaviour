@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="ui text container">
+    <div class="ui container">
       <div class="ui one column grid">
         <div class="column">
           <router-view />

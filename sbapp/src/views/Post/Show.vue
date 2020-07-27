@@ -28,7 +28,7 @@ export default {
   async mounted() {
     this.groups = await api.getgroups();
     this.post = await api.getpost(this.$route.params.id);
-  }
+  },
 };
 </script>
 

@@ -43,8 +43,8 @@ export const api = {
     const res = await axios.get(baseURL + 'posts/' + id);
     return res.data;
   }),
-  getposts: handleError(async () => {
-    const res = await axios.get(baseURL + 'posts/');
+  getposts: handleError(async (page) => {
+    const res = await axios.get(baseURL + 'posts?page=' + page);
     return res.data;
   }),
   deletepost: handleError(async id => {
